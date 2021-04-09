@@ -1,0 +1,29 @@
+{
+  "name": "note_taker",
+  "version": "1.0.0",
+  "description": "Creating an application Note Taker that can be used to write and save notes using Express.js as backend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test",
+    "start": "node server.js",
+    "watch": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saranya-code/Note_Taker.git"
+  },
+  "author": "Saranya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saranya-code/Note_Taker/issues"
+  },
+  "homepage": "https://github.com/saranya-code/Note_Taker#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "require": "^2.4.20"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
