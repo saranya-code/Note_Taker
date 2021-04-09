@@ -1,11 +1,12 @@
 const  titleEl = $('.note-title ');
 const  textEl = $('.note-textarea');
 const  listEl = $('.list-group');
-const  saveButtonEl = $('. save-note')
+const  saveButtonEl = $('.save-note')
+const newNoteEl = $('.new-note')
 
-const addNewNote = () =>{
+titleEl.val() ==="" ? saveButtonEl.hide(): saveButtonEl.show();
 
-}
+// saveButtonEl.hide();
 
 //API call for  GET, DELETE, POST
 const getNotes = () => {
@@ -22,7 +23,7 @@ const deleteNote = id => {
   });
 };
 
-const newNotes = note =>{
+const saveNewNote = note =>{
   return $.ajax({
     url: '/api/notes',
     data: note,
@@ -31,11 +32,14 @@ const newNotes = note =>{
 }
 
 // Get notes from Database and display in list
-getNotes().then(notes => {
-  $.each(notes,function(index, note){
-    createListEl(note)
+const renderList = () => {
+  listEl.html('')
+  getNotes().then(notes => {
+    $.each(notes,function(index, note){
+      createListEl(note)
+    })
   })
-})
+}
 
 const createListEl = note => {
   const noteList = $(`<li class="list-group-item d-flex justify-content-between align-items-center"><div class="note"> ${note.title} </div><i class="delete fas fa-trash-alt text-left"></i></li>`)
@@ -45,11 +49,12 @@ const createListEl = note => {
   });
   noteList.children('.delete').on("click", function () {              // Delete from the list
     event.stopPropagation();
-    deleteNote(note.id).then(data => console.log(data))
+    deleteNote(note.id).then(data => renderList())
+    titleEl.val("")
+    textEl.val("")
   })
   listEl.append(noteList); 
 }
-
 
 //Creating a new note by generating random Id
 $('.save-note').on("click", function () {
@@ -58,18 +63,24 @@ $('.save-note').on("click", function () {
     'text': textEl.val(),
     'id': Math.floor(Math.random()*999)
   }
-  newNotes(data)
+  saveNewNote(data)
+  renderList()
+  saveButtonEl.hide();
+  titleEl.val("")
+  textEl.val("")
 })
 
-//New note-->Title and text will be empty  
-const  emptyNote =()  =>{
-  saveButtonEl.hide();
-  if(addNewNote.id){
+// writing newnote
+newNoteEl.on("click",function(){
+  titleEl.val("")
+  textEl.val("")
+  
+  
+})
 
-    titleEl.val(addNewNote.title)
-    textEl.val(addNewNote.text)
-  } else{
-    titleEl.val("")
-    textEl.val("")
-  }
-}
+//Save button hide and show
+textEl.on("input", function(){
+  textEl.val() !== '' ? saveButtonEl.show() : saveButtonEl.hide()
+});
+
+renderList()
