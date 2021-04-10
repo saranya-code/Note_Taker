@@ -12,11 +12,6 @@ Creating an application Note Taker that can be used to write and save notes usin
  * On the top right corner, you can click save to automatically save the new note to the list on the left.
  
 
- ## Heroku
-
- * This application is also deployed in Heroku.com
-
-
  ## Installation
 
 To install node npm package
@@ -40,13 +35,18 @@ To install node npm package
 * https://expressjs.com/en/4x/api.html#app
 
 
-## Screenshots
+## Screenshots 
 
-![Webpage Screenshot](./assets/images/commandlinescreenshot.png?raw=true)
+![Webpage Screenshot](./public/assets/images/note_taker.gif?raw=true)
 
 
 
 ## Demo
+
+ * This application is deployed in Heroku.com
+
+
+  https://shrouded-tundra-06253.herokuapp.com/notes
 
    
 
